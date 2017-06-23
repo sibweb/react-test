@@ -1,0 +1,140 @@
+// Variables go here!
+$bg-colour: #fff;
+$font-alt: #4a4f54;
+$borderLight: #eef1f1;
+
+// Break points
+$mobile: 767px;
+$tablet: 768px;
+$desktop: 1024px;
+
+// Imports go here!
+@import './components/loading';
+
+// Standard
+html,body{
+	font-size: 14px;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+}
+
+body {
+	background-color: $bg-colour;
+	font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+// Main container
+.listview{
+	display: flex;
+	flex-wrap: wrap;
+	height: 100%;
+	width: 100%;
+
+	@media screen and (max-width: $mobile){
+		display: block;
+	}
+}
+
+.itemCon{
+	background-color: #fff;
+	position: relative;
+
+	@media screen and (min-width: $tablet) {
+		display: flex;
+    min-width: 50%;
+    max-width: 50%;
+    flex: 1 0 auto;
+    text-align: center;
+	}
+
+	@media screen and (min-width: $desktop) {
+		display: flex;
+		width: calc(100% / 4);
+		max-width: calc(100% / 4);
+		min-width: calc(100% / 4);
+		flex: 1 0 auto;
+	}
+
+	.item{
+		width: 100%;
+		display: flex;
+		// Add this in to sort out border issue.
+	  flex-flow: column;
+		@media screen and (max-width: $mobile){
+			display:flex;
+			// Have to unset otherwise images are lost on mobile.
+			flex-flow: unset;
+		}
+
+		.imageCon{
+			display: flex;
+			position: relative;
+
+			@media screen and (max-width: $mobile){
+				// Set width as per Image
+				width:180px;
+				max-width: 180px;
+				min-width: 180px;
+			}
+
+			.image{
+				// Not the greatest as no supported by IE or Edge
+				// But having this as a background image sucks.
+				object-fit: cover;
+				object-position: center;
+				width: 100%;
+
+				@media screen and (max-width: $mobile){
+					// Reset image to listen to container
+					position: absolute;
+          height: 100%;
+				}
+			}
+		}
+
+		.content{
+			// Take the remaining height.
+			flex: 1 1 auto;
+			border-left: 2px solid $borderLight;
+			padding:25px;
+			@media screen and (max-width: $mobile){
+				border-left: 0;
+				border-bottom: 2px solid $borderLight;
+				width: 100%;
+			}
+
+
+			.name{
+				border-top:1px solid #0c121c;
+				border-bottom: 1px solid #0c121c;
+				display: inline-block;
+				font-size: 1.5rem;
+			  font-weight: bold;
+			  text-transform: uppercase;
+				text-align: center;
+				margin:0 0 20px 0;
+				padding:8px 0;
+
+				@media screen and (max-width: $mobile){
+					font-size: 1.3rem;
+					border: 0px;
+					margin-bottom: 0px;
+				}
+			}
+
+			.price{
+				color: $font-alt;
+				margin-bottom: 10px;
+				font-size: 1.1rem;
+			}
+
+			.desc{
+				color: $font-alt;
+				margin-bottom: 10px;
+				font-size: 1.1rem;
+			}
+		}
+	}
+}
